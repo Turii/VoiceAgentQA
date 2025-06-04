@@ -1,0 +1,6 @@
+python-dotenv
+torch
+whisper
+sounddevice
+scipy
+pyttsx3
