@@ -3,7 +3,7 @@ from stt.record_and_transcribe import record_audio, transcribe_with_whisper
 from tts.speak import speak
 
 def agent_reply(user_text):
-    print("🤖 Запит до Mistral:", user_text)
+    print("Запит до Mistral:", user_text)
     response = requests.post(
         "http://localhost:11434/api/generate",
         json={
@@ -24,7 +24,7 @@ def conversation_loop(max_turns=3):
     while turn < max_turns:
         record_audio()
         user_input = transcribe_with_whisper()
-        print("🗣️ You said:", user_input)
+        print("You said:", user_input)
 
         if user_input.lower().strip() in ["bye", "exit", "вихід"]:
             speak("Goodbye!")
