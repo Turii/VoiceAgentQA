@@ -18,6 +18,9 @@ def agent_reply(user_text):
     result = response.json()
     reply = result.get("response", "").strip()
     print("Mistral:", reply)
+    # Зберегти відповідь у текстовий лог-файл
+    with open("tests/mistral_log.txt", "a", encoding="utf-8") as f:
+        f.write(f"User: {user_text}\nMistral: {reply}\n\n")
     return reply
 
 def conversation_loop(max_turns=3):
@@ -34,7 +37,7 @@ def conversation_loop(max_turns=3):
 
         if "фото" in user_input or "зображення" in user_input or "аналізуй" in user_input:
             speak("Дивлюсь на зображення...")
-            labels = vision_agent.analyze_image("media/camphoto_1804928587.JPG")
+            labels = vision_agent.analyze_image("media/cat2.JPEG")
             if labels:
                 speak("Я бачу: " + ", ".join(labels))
             else:
